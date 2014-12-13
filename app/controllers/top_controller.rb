@@ -6,7 +6,7 @@ class TopController < ApplicationController
     referer = request.headers[:referer]
     #referer = 'https://github.com/fmy/qiita_docs'
     if /https:\/\/github\.com/ !~ referer
-      render text: "error\nreferer: #{referer}"
+      render :welcome
       return
     end
     session[:repo_name] = referer.split('github.com/')[1]
