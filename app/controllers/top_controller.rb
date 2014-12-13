@@ -19,5 +19,21 @@ class TopController < ApplicationController
   end
 
   def post
+    client = Qiita::Client.new(access_token: current_user.token)
+    client.connection.response :logger
+    client.post("/api/v2/items",
+      title: "Test",
+      body: "Qiita APIでのテスト投稿",
+      tweet: false,
+      coediting: false,
+      gist: false,
+      private: false,
+      tags: [
+        {
+          name: "test",
+          versions: ["1.0.0"]
+        }
+      ]
+    )
   end
 end
