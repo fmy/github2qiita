@@ -43,17 +43,20 @@ html,body,.wrapper {
 .info {
   margin: 0 auto;
   padding: 20px;
-  width: 600px;
-  height: 200px;
+  width: 700px;
+  height: 300px;
   background: #eee;
   border: 2px solid #bbb;
   border-radius: 5px;
 }
 .code {
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 10px;
   width: 500px;
   background: #fff;
   border: 1px solid #bbb;
   border-radius: 5px;
+}
+.img {
+  margin: 20px;
 }
