@@ -44,6 +44,8 @@ gem 'thin'
 
 gem 'omniauth_qiita'
 gem 'qiita'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
 
 gem "pg", group: :production

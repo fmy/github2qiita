@@ -1,7 +1,7 @@
 .info
   %h1= @repo_name
 
-  %form.form-horizontal{action: '/post'}
+  %form.form-inline{action: '/post'}
     %input{type: 'hidden', name: 'user', value: @user}
     %input{type: 'hidden', name: 'repo', value: @repo}
     %select.form-control#file-select{name: 'file'}
@@ -9,5 +9,5 @@
       - @files.each do |file|
         %option{value:file['sha']}= file['name']
     %input{type: 'hidden', name: 'title'}
-    %input{type: 'submit', value: '投稿する'}
+    %input.btn.btn-default{type: 'submit', value: '投稿する'}
 
