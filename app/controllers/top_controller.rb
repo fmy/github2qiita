@@ -41,6 +41,7 @@ class TopController < ApplicationController
     @user = params[:user]
     @repo = params[:repo]
     @file = params[:file]
+    @title = params[:title]
     @repo_name = "#{@user}/#{@repo}"
     data = URI.parse("https://api.github.com/repos/#{@repo_name}/git/blobs/#{@file}?access_token=ea47a81fa25aa27a0dce31aad11b600eb55e276d").read
 
@@ -54,7 +55,7 @@ class TopController < ApplicationController
     client = Qiita::Client.new(access_token: current_user.token)
     client.connection.response :logger
     client.post("/api/v2/items",
-      title: "Test",
+      title: @title,
       body: body,
       tweet: false,
       coediting: false,
