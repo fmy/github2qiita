@@ -1,7 +1,17 @@
 class TopController < ApplicationController
+  require 'open-uri'
+
   def index
-    @referer = request.headers[:referer]
-    logger.info @referer
+    referer = request.headers[:referer]
+    #referer = 'https://github.com/fmy/qiita_docs'
+    if /https:\/\/github\.com/ !~ referer
+      render text: "error\nreferer: #{referer}"
+      return
+    end
+
+    @repo_name = referer.split('github.com/')[1]
+    data = URI.parse("https://api.github.com/repos/#{@repo_name}/contents/docs").read
+    @files = ActiveSupport::JSON.decode data
   end
 
   def post
