@@ -4,12 +4,12 @@ class TopController < ApplicationController
 
   def index
     referer = request.headers[:referer]
-    #referer = 'https://github.com/fmy/qiita_docs'
-    if /https:\/\/github\.com/ !~ referer
+    #referer = 'https://github.com/fmy/github2qiita'
+    if /https:\/\/github\.com\/([^\/]+)\/([^\/]+).*/ !~ referer
       render :welcome
       return
     end
-    session[:repo_name] = referer.split('github.com/')[1]
+    session[:repo_name] = "#{$1}/#{$2}"
     redirect_to '/auth/qiita'
   end
 
