@@ -22,7 +22,15 @@ class TopController < ApplicationController
     @repo = params[:repo]
     @repo_name = "#{@user}/#{@repo}"
     data = URI.parse("https://api.github.com/repos/#{@repo_name}/contents/docs?access_token=ea47a81fa25aa27a0dce31aad11b600eb55e276d").read
-    @files = ActiveSupport::JSON.decode data
+    json = ActiveSupport::JSON.decode data
+    @files = []
+    json.each do |file|
+      if /.*\.md/ =~ file['name']
+        file['name'] = file['name'].split('.')[0]
+        @files << file
+      end
+    end
+
   end
 
   # https://api.github.com/repos/fmy/qiita_docs/git/blobs/72ce993fba8ce7dfef2c2b93628e6fa7628a75f3?access_token=ea47a81fa25aa27a0dce31aad11b600eb55e276d

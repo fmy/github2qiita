@@ -1,11 +1,13 @@
 .info
   %h1= @repo_name
 
-  %form{action: '/post'}
+  %form.form-horizontal{action: '/post'}
     %input{type: 'hidden', name: 'user', value: @user}
     %input{type: 'hidden', name: 'repo', value: @repo}
-    - @files.each do |file|
-      %div
-        %input{name: 'file', value:file['sha'], type: 'checkbox'}= file['name']
+    %select.form-control#file-select{name: 'file'}
+      %option{value:""}ファイルを選択
+      - @files.each do |file|
+        %option{value:file['sha']}= file['name']
+    %input{type: 'hidden', name: 'title'}
     %input{type: 'submit', value: '投稿する'}
 
