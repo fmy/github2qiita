@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="wrapper">
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="container">
+      <h1 class="title">
+        <span class="github">Github</span>
+        <img class="emoji" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="50" width="50" align="absmiddle">
+        <span class="qiita">Qiita</span>
+      </h1>
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

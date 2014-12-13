@@ -10,6 +10,7 @@ class TopController < ApplicationController
       return
     end
     session[:repo_name] = referer.split('github.com/')[1]
+    redirect_to '/auth/qiita'
   end
 
   def list
@@ -20,7 +21,7 @@ class TopController < ApplicationController
     @user = params[:user]
     @repo = params[:repo]
     @repo_name = "#{@user}/#{@repo}"
-    data = URI.parse("https://api.github.com/repos/#{@repo_name}/contents/docs").read
+    data = URI.parse("https://api.github.com/repos/#{@repo_name}/contents/docs?access_token=ea47a81fa25aa27a0dce31aad11b600eb55e276d").read
     @files = ActiveSupport::JSON.decode data
   end
 

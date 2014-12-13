@@ -1,9 +1,11 @@
-%h1= @repo_name
+.info
+  %h1= @repo_name
 
-%form{action: '/post'}
-  %input{type: 'hidden', name: 'user', value: @user}
-  %input{type: 'hidden', name: 'repo', value: @repo}
-  - @files.each do |file|
-    %input{name: 'file', value:file['sha'], type: 'checkbox'}= file['name']
-  %input{type: 'submit', value: '投稿する'}
+  %form{action: '/post'}
+    %input{type: 'hidden', name: 'user', value: @user}
+    %input{type: 'hidden', name: 'repo', value: @repo}
+    - @files.each do |file|
+      %div
+        %input{name: 'file', value:file['sha'], type: 'checkbox'}= file['name']
+    %input{type: 'submit', value: '投稿する'}
 
