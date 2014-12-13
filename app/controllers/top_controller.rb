@@ -47,7 +47,7 @@ class TopController < ApplicationController
 
     @file = ActiveSupport::JSON.decode data
 
-    body = Base64.decode64(@file['content'])
+    body = Base64.decode64(@file['content']).force_encoding('UTF-8')
     body << "<br/> この投稿は[Github :point_right: Qiita](https://github2qiita.herokuapp.com/)から投稿されました。"
 
     logger.info(body)
