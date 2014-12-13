@@ -1,7 +1,14 @@
+%h1 Top#index
+%p Find me in app/views/top/index.html.haml
 
-%h1= @repo_name
+%p
+  - if current_user
+    = link_to "ログアウト", logout_path
+  - else
+    = link_to "ログイン", "/auth/qiita"
 
-%form{action: '/post'}
-  - @files.each do |file|
-    %input{name: file['sha'], value: '1', type: 'checkbox'}= file['name']
-  %input{type: 'submit', value: '投稿する'}
+%p
+  - if current_user
+    %h1= current_user.screen_name
+    %p= current_user.token
+    %p= link_to "投稿", "/post"

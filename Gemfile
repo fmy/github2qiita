@@ -42,4 +42,7 @@ gem 'haml'
 gem 'quiet_assets'
 gem 'thin'
 
+gem 'omniauth_qiita'
+gem 'qiita'
+
 gem "pg", group: :production
