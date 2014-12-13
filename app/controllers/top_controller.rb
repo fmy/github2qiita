@@ -63,7 +63,15 @@ class TopController < ApplicationController
       private: false,
       tags: [
         {
-          name: "test",
+          name: "Qiita",
+          versions: ["1.0.0"]
+        },
+        {
+          name: "Github",
+          versions: ["1.0.0"]
+        },
+        {
+          name: "hackathon",
           versions: ["1.0.0"]
         }
       ]
