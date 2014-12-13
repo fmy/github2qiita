@@ -13,7 +13,13 @@ class TopController < ApplicationController
   end
 
   def list
-    @repo_name = session[:repo_name]
+    if params[:user].blank? || params[:repo].blank?
+      redirect_to root_path
+      return
+    end
+    @user = params[:user]
+    @repo = params[:repo]
+    @repo_name = "#{@user}/#{@repo}"
     data = URI.parse("https://api.github.com/repos/#{@repo_name}/contents/docs").read
     @files = ActiveSupport::JSON.decode data
   end

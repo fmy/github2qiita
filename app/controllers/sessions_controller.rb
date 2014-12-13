@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
 		auth = request.env["omniauth.auth"]
 		user = User.find_by_provider_and_uid(auth['provider'], auth['uid']) || User.create_with_omniauth(auth)
     session[:user_id] = user.id
-    redirect_to list_path
+    user, repo = session[:repo_name].split('/')
+    redirect_to "list?user=#{user}&repo=#{repo}"
 	end
 
 	def destroy
