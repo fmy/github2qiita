@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root 'top#index'
   get 'post', to: 'top#post'
 
+  get '/auth/:provider/callback', :to => 'sessions#callback'
+  post '/auth/:provider/callback', :to => 'sessions#callback'
+  get '/logout' => 'sessions#destroy', :as => :logout
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

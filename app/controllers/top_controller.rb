@@ -1,4 +1,7 @@
 class TopController < ApplicationController
+
+  require "qiita"
+
   def index
   end
 

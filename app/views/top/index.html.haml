@@ -1,2 +1,14 @@
 %h1 Top#index
 %p Find me in app/views/top/index.html.haml
+
+%p
+  - if current_user
+    = link_to "ログアウト", logout_path
+  - else
+    = link_to "ログイン", "/auth/qiita"
+
+%p
+  - if current_user
+    %h1= current_user.screen_name
+    %p= current_user.token
+    %p= link_to "投稿", "/post"
