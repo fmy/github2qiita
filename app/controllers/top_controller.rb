@@ -21,7 +21,13 @@ class TopController < ApplicationController
     @user = params[:user]
     @repo = params[:repo]
     @repo_name = "#{@user}/#{@repo}"
-    data = URI.parse("https://api.github.com/repos/#{@repo_name}/contents/docs?access_token=ea47a81fa25aa27a0dce31aad11b600eb55e276d").read
+    begin
+      data = URI.parse("https://api.github.com/repos/#{@repo_name}/contents/docs?access_token=ea47a81fa25aa27a0dce31aad11b600eb55e276d").read
+    rescue Exception => ex
+      redirect_to root_path
+      return
+    end
+
     json = ActiveSupport::JSON.decode data
     @files = []
     json.each do |file|
